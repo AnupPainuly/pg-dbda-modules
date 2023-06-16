@@ -1,0 +1,19 @@
+#!/bin/bash
+#Objective: Write a script that scans through each file in the 
+#`robs_files/` directory to see if it is a Python file (ends in `.py`) AND contains 
+#`RandomForestClassifier`. If so, move it into the `to_keep/` directory.
+#dependencies: None
+
+src=$HOME/Documents/pg-dbda/module6_Big-Data/practice/bash_scripting/robs_files/
+target=$HOME/Documents/pg-dbda/module6_Big-Data/practice/bash_scripting/to_keep/
+
+files=$(find $src -type f -name "*.py")
+for i in $(echo $files)
+do cp $i $target 
+done
+if [[ $? == 0 ]]
+then
+    echo files copied successfully
+else
+    echo Operation failes $?
+fi

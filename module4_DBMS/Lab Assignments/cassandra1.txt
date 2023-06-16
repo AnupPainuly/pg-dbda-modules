@@ -1,0 +1,33 @@
+
+	Facebook
+	
+	post_id		type	likes	comments	shares
+	10566		text	45		3			2
+	10678		link	23		6			1
+	10674		photo	244		56			6
+	10326		photo	42		12			2
+	10266		link	133		95			12
+	10429		text	580		245			11
+	10538		video	255		90			12		
+	10245		photo	123		90			23
+	
+1. Create table facebook with post_id as primary key
+2. Show the contents of posts with type, likes, comments and shares
+3. Update the likes and comments of id 10538 to 156 and 78 resp.
+4. Insert new entry record (id,type,comments and shares only)
+5. Find the total number of likes and shares.
+6. Find the average of comments.
+7. Print ids of post with likes more than 100.
+8. Count total values on likes column.
+9. Delete the post whose comments are less than 10.
+10. Find total number of reactions (likes, comments and shares separately on photo posts)
+11. Find sum of all posts indivisually for likes, comments, shares
+12. Print average reactions (likes, comments, shares) of each post.  
+
+create table facebook
+(id int,
+type text,
+likes int,
+comments int,
+shares int,
+primary key(id, type));

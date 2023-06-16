@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ -z $1 ]]
+then
+    echo argument missing
+    exit
+fi
+src_file_dir=hire_data/
+grep -rh $1 $src_file_dir > $1.csv

@@ -1,0 +1,105 @@
+Types of OS:
+```
+Single User Single Tasking [DOS]
+Single User Multitasking [Win]
+Multiuser Multitasking [Linux/unix]
+Real Time
+Embedded
+
+Open Source
+```
+- Free to study
+- Free to modify
+- Free to dist.
+
+History of SHELL:
+``
+sh 		[ SHELL ]
+ksh		[ Korn Shell ] : UNIX Script
+To exe multi objs using a single obj.
+
+csh 		[ C lang Shell ]
+tcsh 	[ Turbo C shell ]
+BASH  	[ ksh + tcsh ] 
+
+
+
+
+
+
+
+
+
+
+1) POST
+2) BIOS 
+				\_ CD/DVD
+				\_ HDD/SSD *
+				\_ USB
+				\_ N/W
+3) MBR [ Master Boot Record ]
+
+4) Boot Loader [ GRUB ] 
+			
+
+CLI
+	\_ TUI [Text-mode user interface] 
+GUI
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+Installation:
+``20G
+
+1) /    		[ Parent Partition ] 
+
+2) /boot		[ Booting Configuration ] GRUB
+
+3) SWAP		[ RAM x 2 ] = 8G
+							Phy 
+							Mem
+A part of HDD/SSD act as RAM, is called Virtual Mem
+
+File SYstem:
+``` 
+FAT32 - 512 kb/block
+NTFS  - 4 MB/block
+
+ext2
+ext3
+ext4
+xfs
+vfat [fat, fat16, fat32]
+
+
+
+/dev/sda : HDD
+
+/dev/sda1 : Partition
+/dev/sda2
+
+Storage
+Device
+a
+-----------
+CD/DVD:
+
+/dev/sr0
+/dev/sr1
+
+
+
+
+
+
+
+
+
+
+https://linuxjourney.com/
+https://cmdchallenge.com/
+
+
+https://tryhackme.com/room/linuxfundamentalspart1
+https://tryhackme.com/room/linuxfundamentalspart2
+https://tryhackme.com/room/linuxfundamentalspart3

@@ -1,0 +1,22 @@
+LOAD DATA INPATH '/user/cloudera/hire_data_input_files/country_continent.csv' 
+INTO TABLE hiredata_continent;
+
+LOAD DATA INPATH '/user/cloudera/hire_data_input_files/new**.csv' 
+INTO TABLE hiredata;
+
+SET hive.enforce.bucketing=true;
+SET hive.exec.dynamic.partition=true;
+SET hive.exec.dynamic.partition.mode=nonstrict;
+
+--removing header rows with where clause while inserting the data into dynamic table
+INSERT OVERWRITE TABLE hiredata_opt PARTITION(country) 
+SELECT 
+    city, 
+    designation, 
+    salary, 
+    country 
+FROM hiredata 
+where city<>"City";
+
+
+

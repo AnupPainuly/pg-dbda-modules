@@ -1,0 +1,375 @@
+kiosk@kiosk-virtual-machine:~$
+
+
+kiosk: username
+
+kiosk-virtual-machine: hostname
+
+~ [tilte] : home dir of logged in user
+
+/home/user1
+/home/natasha
+---
+/root
+
+$ : Normal User 
+
+# : Root user
+______
+/bin 	[binary]
+/sbin 	[Super Binary]
+/usr		[All system commands] /usr/bin, /usr/sbin/
+/boot	[Booting Configuration] GRUB
+/dev		[Devices]
+/lib		[Library]
+/lib32	[Library]
+/lib64	[Library]
+/mnt,/misc,/opt,/media : EMPTY
+/home	[Home Dir of normal users] /home/natasha ; /home/harry
+/root	[Home Dir of Super User]
+/proc	[Process & hardware related information]
+/selinux[RHEL/CentOS: Security Enhanced Linux] File Based Security [rwx]
+/etc		[Important: system services & system related config]
+/srv		[Service: Third party services]
+/sys		[System: system driver database]
+/tmp		[Temp]
+/var		[variable data: spool dir(mail inbox), logs]
+files	[static/dynamic]
+_______________
+Basic Commands:
+--------------- 
+
+PATH:
+``
+a) Absolute Path [/home/natasha/Desktop]
+b) Relative Path [cd Dir]
+
+1) pwd			:	Present Working Dir
+2) whoami 	:	Check the loggedin user
+3) date		:	Show the date & time
+4) ls			: 	Show the list of dir contents
+5) mkdir dir_name		:	Make dir
+6) touch filename		:	To crete a blank file
+7) cat > filename		:	Create a file with text.
+text
+
+[ctrl+d : exit]
+
+>	stdout	[ Standard output to the program ]
+<	stdin	[ Standard input to the program ]
+
+# cat > secret
+redhat
+redhat
+
+8) cat filename: To show the text of file
+
+9) passwd username: To reset the password for user.
+
+10) cat >> filename : To append the data in existing file.
+text
+[ctrl+d]: To save
+
+11) remove:
+
+a) A file:
+`
+# rm filename
+
+b) A dir:
+```
+# rm -rfv dir_name
+
+-r [ Recursive ] 
+-f [ Forcefully ]
+-v [ verbose ] : to view the process in detail.
+
+12) MOVE:
+
+# mv sourceFile/Dir DestinationDir
+
+13) COPY:
+
+a) File to File:
+----------------
+# cp srcFile dstFile
+
+# cp -i srcFile dstFile
+
+b) File/Dir to Dir:
+-------------------
+
+# cp -rfv srcFile/Dir dstDir
+
+alias:
+```Redirection
+
+Check:
+```
+# alias
+
+alias ls='ls --color=auto'
+
+Remove:
+```
+# unalias ls
+
+Create:
+`````
+# alias name='cmd'
+
+# alias ls='ls --color=auto'
+
+echo "MSG" : Print the msg on screen
+ls -a	:	Show all/Hidden files/Dirs
+
+mkdir .dirname	: Hidden dir
+touch .filename	: Hidden file
+
+history	: To show the history
+	!2000	: Exe history index number
+
+history -c : Clear/Clean the history
+
+tty: Print/show th console identity
+
+# echo "Hello" > /dev/tty1
+___
+
+ENV variable[SYSTEM Variable]
+``````
+
+Check:
+``
+# env
+
+Print:
+```
+# echo $SHELL
+---------
+history
+
+echo $HISTSIZE
+1000
+
+change the value of env variables but for current working env:
+----------
+export HISTSIZE=0
+_
+# cd /root/
+# ls -a
+.bash_history
+____
+
+# echo $HISTTIMEFORMAT
+
+%d : Day
+%m : month
+%y : year
+%T : Timestamp
+
+# export HISTTIMEFORMAT="%d-%m-%y %T "
+_______________
+| (pipe sign)
+``
+
+# cmd1 | cmd2
+
+O/P -----> as I/P
+
+# wc -l /etc/passwd
+57 /etc/passwd
+
+# cat /etc/passwd | wc -l
+57
++++++++
+grep : to search the string/patterns.
+``
+# grep "string" filename.txt
+# grep "false" /etc/passwd
+OR
+# cat /etc/passwd | grep "false"
+
+-----
+# ifconfig eth0 | grep "inet"
+
+invert grep:
+```
+# ifconfig eth0 | grep -v "inet6"
+
+Multiple string/patterns
+````
+# ifconfig | grep "inet" | grep -v "inet6\|127.0.0.1"
+
+Metachar:[^, $]
+````
+caret [^] : Start of the line.
+``
+# cat file.txt | grep "^s"
+dollar [$]	: End of the file
+`
+# cat file.txt | grep "j$"
+
+Case Insensitive:
+``
+# cat file.txt | grep -i "rajat"
+
+Strict match:
+````
+# cat file.txt | grep -o "lol"
+
+
+Before line print:
+```
+# cat file.txt | grep -B 1 "lol"
+
+After line print:
+```
+# cat file.txt | grep -A 1 "dheeraj"
+
+recursively:
+```
+# grep "lol" * -r
+file.txt:lols
+pop/f1.txt:lol
+
+Extended GREP:
+``` RegEx
+
+# egrep 
+OR
+# grep -E
+
+# cat file.txt | egrep "str1|str2"
+
+# cat file.txt | egrep "[0-9a-zA-Z]"
+
+predefined classes charsets:
+```````
+[[:digit:]]		Digits
+[[:alpha:]]		Alphabetic char
+[[:lower:]]		lowercase char
+[[:upper:]]		upercase char
+[[:blank:]]		Tab & Space
+[[:alnum:]]		Alphanumeric char
+
+# cat file.txt | egrep "[[:digit:]]"
+_____
+* +
+
+.jsp
+.action
+
+user related info stored into:
+
+# cat /etc/passwd
+
+kiosk:x:1000:1000:kiosk,,,:/home/kiosk:/bin/bash
+
+UID [0-60000] 			| GID [0-60000]
+```````
+0-999 super users		0-999 Super Groups
+1000+ normal users  1000+ Normal Groups
+
+Password related info stored into:
+
+# cat /etc/shadow
+
+kiosk:Encrypted Pass:Acc.Age
+
+SHA512 + Salt Algo
+
+
+
+
+
+group info:
+``
+# cat /etc/group
+
+grp:x:GID
+
+Group password:
+``
+# cat /etc/gshadow
+
+
+
+
+
+-----------------------
+1) Add user:
+```
+# adduser username
+
+2) Switch User:
+```
+# su - username
+# exit
+or
+# logout
+3) Password:
+```
+# passwd username
+# passwd -d username
+
+-d : delete
+
+4) Delete User:
+```
+a) Without home dir
+
+# userdel username
+
+b) With home dir:
+
+# userdel -r username
+
+5) Check:
+```
+# id username
+
+6) Account Age:
+```
+# chage -l username
+---------------------------------------
+1) Add group:
+````
+# groupadd groupname
+
+2) Password:
+```
+# gpasswd groupname
+
+3) Delete:
+`````
+# groupdel groupdel
+
+Memberships:
+```
+a) Primary Membership
+````
+Add user as primary member of a group:
+```````
+# groupadd cdac
+# useradd -g cdac u1
+
+-g : Primary membership
+
+b) Secondary Membership
+````````
+a) add user as secondary member of a group:
+
+# groupadd grp2
+# useradd -G grp2 u2
+
+-G : Secondary membership
+
+b) add an existing user as secondary member of a group:
+
+# usermod -G grp2 natasha
+
+/etc/passwd
+/etc/shadow
+/etc/group
+/etc/gshadow

@@ -1,0 +1,2 @@
+LOAD DATA INPATH '/user/cloudera/hire_data_input_files/*.csv' INTO TABLE hiredata;
+

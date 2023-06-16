@@ -1,0 +1,5 @@
+1. Find the information of all the bowlers.
+2. Print the information about the wicketkeepers only.
+4. Delete the wickets for the player who has stumpings.
+5. Update the matches and wickets of player 'Ram' to 61 and 71.
+6. Print the information of players who have taken more than 100 catches.

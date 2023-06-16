@@ -1,0 +1,53 @@
+Q1. Create this table?
+hbase:011:0> create 'worker','Row', 'City','Contact'                                                   
+Created table worker
+                                                                                
+=> Hbase::Table - worker
+
+
+hbase:017:0> t=get_table 'worker'
+Took 0.0003 seconds
+=> Hbase::Table - worker
+
+Q2. Insert three entries inside the table?
+hbase:020:0> t.put 'r1', 'Row', 1
+hbase:021:0> t.put 'r1', 'City:Permanent', 'Pune'
+hbase:022:0> t.put 'r1', 'City:Office', 'Pune'
+hbase:023:0> t.put 'r1', 'City:Temporary', 'Goa'
+hbase:024:0> t.put 'r1', 'Contact:Official', '123'
+hbase:025:0> t.put 'r1', 'Contact:Personal', '007'
+
+hbase:030:0> t.put 'r2', 'Row', 2
+hbase:031:0> t.put 'r2', 'City:Permanent', 'Westeros'
+hbase:032:0> t.put 'r2', 'City:Office', 'Citadel'
+hbase:033:0> t.put 'r2', 'City:Temporary', 'Dorne'
+hbase:034:0> t.put 'r2', 'Contact:Official', '890'
+hbase:035:0> t.put 'r2', 'Contact:Personal', '860'
+
+hbase:030:0> t.put 'r3', 'Row', 3
+hbase:031:0> t.put 'r3', 'City:Permanent', 'Tokyo'
+hbase:032:0> t.put 'r3', 'City:Office', 'Kyoto'
+hbase:033:0> t.put 'r3', 'City:Temporary', 'Osaka'
+hbase:034:0> t.put 'r3', 'Contact:Official', '143'
+hbase:035:0> t.put 'r3', 'Contact:Personal', '420'
+
+Q3. Update the Temporary city of second row to new value?
+hbase:044:0> t.put 'r2', 'City:Temporary', 'Vale'
+
+Q4. delete the Official Contact of row 1?
+hbase:045:0> t.delete 'r1', 'Contact:Official'
+
+Q5. Print the personal Contact numbers?
+hbase:001:0> scan 'worker', {COLUMN => 'Contact:Personal'}
+ROW                COLUMN+CELL
+ r1                column=Contact:Personal, timestamp=2023-05-03T22:
+                   25:37.015, value=007
+ r2                column=Contact:Personal, timestamp=2023-05-03T22:
+                   37:59.191, value=860
+ r3                column=Contact:Personal, timestamp=2023-05-03T22:
+                   42:25.820, value=420
+3 row(s)
+Took 0.3936 seconds
+
+
+

@@ -1,0 +1,15 @@
+Create Table employees using CQL commands.
+Employee -> id, name, salary, commision
+
+1. Insert 5 entries
+2. Update employee’s total salary to 20000 whose commission is ‘0’
+3. Find the total commission of employees
+4. Delete the entry of employee with id = 5
+5. Change the name of employee whose id = 1
+
+Create Table Teachers -> srno, t_name, subject, experience
+Insert five rows and print the information
+
+Create Table Books -> srno, b_name, pages, price, author
+Insert five rows and print information
+

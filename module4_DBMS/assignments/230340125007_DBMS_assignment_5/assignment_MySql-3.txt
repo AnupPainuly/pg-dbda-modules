@@ -1,0 +1,612 @@
+Table Name:- Employee
+Empid EmpName Department ContactNo EmailId EmpHeadId
+101 Isha E-101 1234567890 isha@gmail.com 105
+102 Priya E-104 1234567890 priya@yahoo.com 103
+103 Neha E-101 1234567890 neha@gmail.com 101
+104 Rahul E-102 1234567890 rahul@yahoo.com 105
+105 Abhishek E-101 1234567890 abhishek@gmail.com 102
+
+create table Employee (Empid int , EmpName varchar(15), Department varchar(15) ,ContactNo int, EmailId varchar(15) ,EmpHeadId int);
+insert into Employee values(101 ,'Isha', 'E-101', 1234567890, 'isha@gmail.com', 105);
+insert into Employee values(102 ,'Priya', 'E-104', 1234567890, 'priya@yahoo.com', 103);
+insert into Employee values(103 ,'Neha', 'E-101', 1234567890, 'neha@gmail.com', 101);
+insert into Employee values(104 ,'Rahul', 'E-102', 1234567890, 'rahul@yahoo.com', 105);
+insert into Employee values(105 ,'Abhishek 'E-101', 1234567890, 'abhi@gmail.com', 102);
+
++-------+----------+------------+------------+-----------------+-----------+
+| Empid | EmpName  | Department | ContactNo  | EmailId         | EmpHeadId |
++-------+----------+------------+------------+-----------------+-----------+
+|   102 | Priya    | E-104      | 1234567890 | priya@yahoo.com |       103 |
+|   103 | Neha     | E-101      | 1234567890 | neha@gmail.com  |       101 |
+|   104 | Rahul    | E-102      | 1234567890 | rahul@yahoo.com |       105 |
+|   105 | Abhishek | E-101      | 1234567890 | abhi@gmail.com  |       102 |
+|   101 | Isha     | E-101      | 1234567890 | isha@gmail.com  |       105 |
++-------+----------+------------+------------+-----------------+-----------+
+
+Table :- EmpDept
+DeptId DeptName Dept_off DeptHead
+E-101 HR Monday 105
+E-102 Development Tuesday 101
+E-103 Hous Keeping Saturday 103
+E-104 Sales Sunday 104
+E-105 Purchage Tuesday 104
+
+  > create table EmpDept (DeptId varchar(20) ,DeptName varchar(20), Dept_off varchar(20) ,DeptHead int);
+  > insert into EmpDept values('E-101', 'HR', 'Monday', 105);
+  > insert into EmpDept values('E-102', 'Development', 'Tuesday', 101);
+  > insert into EmpDept values('E-103', 'House Keeping', 'Saturday', 103);
+  > insert into EmpDept values('E-104', 'Sales', 'Sunday', 104);
+  > insert into EmpDept values('E-105', 'Purchase', 'Tuesday', 104);
+
++--------+---------------+----------+----------+
+| DeptId | DeptName      | Dept_off | DeptHead |
++--------+---------------+----------+----------+
+| E-101  | HR            | Monday   |      105 |
+| E-102  | Development   | Tuesday  |      101 |
+| E-103  | House Keeping | Saturday |      103 |
+| E-104  | Sales         | Sunday   |      104 |
+| E-105  | Purchase      | Tuesday  |      104 |
++--------+---------------+----------+----------+
+
+Table :- EmpSalary
+EmpId Salary IsPermanent
+101 2000 Yes
+102 10000 Yes
+103 5000 No
+104 1900 Yes
+105 2300 Yes
+
+create table EmpSalary (EmpId int ,Salary int, IsPermanent varchar(5));
+insert into EmpSalary values(101, 2000, 'Yes');
+insert into EmpSalary values(102, 10000, 'Yes');
+insert into EmpSalary values(103, 5000, 'No');
+insert into EmpSalary values(104, 1900, 'Yes');
+insert into EmpSalary values(105, 2300, 'Yes');
+
++-------+--------+-------------+
+| EmpId | Salary | IsPermanent |
++-------+--------+-------------+
+|   101 |   2000 | Yes         |
+|   102 |  10000 | Yes         |
+|   103 |   5000 | No          |
+|   104 |   1900 | Yes         |
+|   105 |   2300 | Yes         |
++-------+--------+-------------+
+
+
+Table :- Project
+ProjectId Duration
+p-1 23
+p-2 15
+p-3 45
+p-4 2
+p-5 30
+
+create table Project (ProjectId varchar(5), Duration int);
+insert into Project values('p-1', 23);
+insert into Project values('p-2', 15);
+insert into Project values('p-3', 45);
+insert into Project values('p-4', 2);
+insert into Project values('p-5', 30);
+
++-----------+----------+
+| ProjectId | Duration |
++-----------+----------+
+| p-1       |       23 |
+| p-2       |       15 |
+| p-3       |       45 |
+| p-4       |        2 |
+| p-5       |       30 |
++-----------+----------+
+
+Table :- Country
+
+cid cname
+c-1 India
+c-2 USA
+c-3 China
+c-4 Pakistan
+c-5 Russia
+
+create table Country (cid varchar(5), cname varchar(15));
+insert into Country values('c-1', 'India');
+insert into Country values('c-2', 'USA');
+insert into Country values('c-3', 'China');
+insert into Country values('c-4', 'Pakistan');
+insert into Country values('c-5', 'Russia');
+
++-----+----------+
+| cid | cname    |
++-----+----------+
+| c-1 | India    |
+| c-2 | USA      |
+| c-3 | China    |
+| c-4 | Pakistan |
+| c-5 | Russia   |
++-----+----------+
+
+Table :- ClientTable
+ClientId ClientName cid
+cl-1 ABC Group c-1
+cl-2 PQR c-1
+cl-3 XYZ c-2
+cl-4 tech altum c-3
+cl-5 mnp c-5
+create table ClientTable (ClientId varchar(5), ClientName varchar(25), cid varchar(5));
+insert into ClientTable values('cl-1', 'ABC Group' ,'c-1');
+insert into ClientTable values('cl-2', 'PQR' ,'c-1');
+insert into ClientTable values('cl-3', 'XYZ' ,'c-2');
+insert into ClientTable values('cl-4', 'tech altum' ,'c-3');
+insert into ClientTable values('cl-5', 'mnp' ,'c-5');
+
++----------+------------+-----+
+| ClientId | ClientName | cid |
++----------+------------+-----+
+| cl-1     | ABC Group  | c-1 |
+| cl-2     | PQR        | c-1 |
+| cl-3     | XYZ        | c-2 |
+| cl-4     | tech altum | c-3 |
+| cl-5     | mnp        | c-5 |
++----------+------------+-----+
+
+Table :- EmpProject
+EmpId ProjectId ClientID StartYear EndYear
+101 p-1 Cl-1 2010 2010
+102 p-2 Cl-2 2010 2012
+103 p-1 Cl-3 2013
+104 p-4 Cl-1 2014 2015
+105 p-4 Cl-5 2015
+
+create table EmpProject (EmpId int, ProjectId varchar(5), ClientID varchar(10), StartYear int ,EndYear int default null);
+insert into EmpProject values(101, 'p-1', 'Cl-1', 2010, 2010);
+insert into EmpProject values(102, 'p-2', 'Cl-2', 2010, 2012);
+insert into EmpProject (EmpId, ProjectId, ClientId,StartYear) values(103, 'p-1', 'Cl-3', 2013 );
+insert into EmpProject values(104, 'p-4', 'Cl-1', 2014, 2010);
+insert into EmpProject (EmpId, ProjectId, ClientId,StartYear) values(105, 'p-4', 'Cl-5', 2015 );
+
++-------+-----------+----------+-----------+---------+
+| EmpId | ProjectId | ClientID | StartYear | EndYear |
++-------+-----------+----------+-----------+---------+
+|   101 | p-1       | Cl-1     |      2010 |    2010 |
+|   102 | p-2       | Cl-2     |      2010 |    2012 |
+|   104 | p-4       | Cl-1     |      2014 |    2010 |
+|   103 | p-1       | Cl-3     |      2013 |    NULL |
+|   105 | p-4       | Cl-5     |      2015 |    NULL |
++-------+-----------+----------+-----------+---------+
+
+Questions:
+1. Select the detail of the employee whose name start with P.
+ > select * from Employee where EmpName like 'p%';
++-------+---------+------------+------------+-----------------+-----------+
+| Empid | EmpName | Department | ContactNo  | EmailId         | EmpHeadId |
++-------+---------+------------+------------+-----------------+-----------+
+|   102 | Priya   | E-104      | 1234567890 | priya@yahoo.com |       103 |
++-------+---------+------------+------------+-----------------+-----------+
+
+
+2. How many permanent candidate take salary more than 5000.
+ > select count(*) from EmpSalary where salary>5000 and ispermanent='Yes';
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+
+3. Select the detail of employee whose emailId is in gmail.
+  > select * from Employee where emailid like '%gmail%';
++-------+----------+------------+------------+----------------+-----------+
+| Empid | EmpName  | Department | ContactNo  | EmailId        | EmpHeadId |
++-------+----------+------------+------------+----------------+-----------+
+|   103 | Neha     | E-101      | 1234567890 | neha@gmail.com |       101 |
+|   105 | Abhishek | E-101      | 1234567890 | abhi@gmail.com |       102 |
+|   101 | Isha     | E-101      | 1234567890 | isha@gmail.com |       105 |
++-------+----------+------------+------------+----------------+-----------+
+
+4. Select the details of the employee who work either for department E-104 or E-102.
+  > select * from Employee where department='E-104' or department='E-102';
++-------+---------+------------+------------+-----------------+-----------+
+| Empid | EmpName | Department | ContactNo  | EmailId         | EmpHeadId |
++-------+---------+------------+------------+-----------------+-----------+
+|   102 | Priya   | E-104      | 1234567890 | priya@yahoo.com |       103 |
+|   104 | Rahul   | E-102      | 1234567890 | rahul@yahoo.com |       105 |
++-------+---------+------------+------------+-----------------+-----------+
+
+5. What is the department name for DeptID E-102?
+> select deptname from EmpDept where deptid='E-102';
++-------------+
+| deptname    |
++-------------+
+| Development |
++-------------+
+1 row in set (0.0008 sec)
+
+6. What is total salary that is paid to permanent employees?
+  > select sum(salary) from EmpSalary where ispermanent='Yes';
++-------------+
+| sum(salary) |
++-------------+
+|       16200 |
++-------------+
+
+7. List name of all employees whose name ends with a.
+> select empname from Employee where EmpName like '%a';
++---------+
+| empname |
++---------+
+| Priya   |
+| Neha    |
+| Isha    |
++---------+
+
+8. List the number of department of employees in each project.
+ > select ed.deptname, count(e.empname) from EmpDept ed left join Employee e on ed.deptid=e.department where e.empid in (select empid from EmpProject) group by ed.deptname;
++-------------+------------------+
+| deptname    | count(e.empname) |
++-------------+------------------+
+| Sales       |                1 |
+| HR          |                3 |
+| Development |                1 |
++-------------+------------------+
+
+9. How many project started in year 2010.
+  > select count(*) from EmpProject where startyear=2010;
++----------+
+| count(*) |
++----------+
+|        2 |
++----------+
+1 row in set (0.0010 sec)
+
+10. How many project started and finished in the same year.
+> select count(*) from EmpProject where startyear=endyear;
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.0010 sec)
+
+11. Select the name of the employee whose name's 3rd charactor is 'h'.
+  > select empname from Employee where EmpName like '__h%';
++----------+
+| empname  |
++----------+
+| Neha     |
+| Rahul    |
+| Abhishek |
+| Isha     |
++----------+
+
+12. Select the department name of the company which
+is assigned to the employee whose employee id is greater than 103.
+> select ed.deptname from EmpDept ed left join Employee e on ed.deptid=e.department where e.empid >103;
++-------------+
+| deptname    |
++-------------+
+| HR          |
+| Development |
++-------------+
+13. Select the name of the employee who is working under Abhishek.
+  > select empname from Employee where empheadid=105;
++---------+
+| empname |
++---------+
+| Rahul   |
+| Isha    |
++---------+
+2 rows in set (0.0010 sec)
+
+14. Select the name of the employee who is department head of HR.
+ > select empname from Employee where empid=(select depthead from EmpDept where deptname='HR');
++----------+
+| empname  |
++----------+
+| Abhishek |
++----------+
+or
+  > select e.empname from EmpDept ed left join Employee e on ed.deptid=e.department where e.empid=ed.depthead;
++----------+
+| empname  |
++----------+
+| Abhishek |
++----------+
+or 
+ > select e.empname from EmpDept ed left join Employee e on ed.deptid=e.department where ed.deptname='HR' and e.empid=ed.depthead;
++----------+
+| empname  |
++----------+
+| Abhishek |
++----------+
+
+15. Select the name of the employee head who is permanent.
+ > select e.empname from Employee e left join EmpSalary es on e.empid=es.empid where ispermanent='Yes' and es.empid in (select depthead from EmpDept);
++----------+
+| empname  |
++----------+
+| Rahul    |
+| Abhishek |
+| Isha     |
++----------+
+
+16. Select the name and email of the Dept Head who is not Permanent.
+  > select e.empname,e.emailid from Employee e left join EmpSalary es on e.empid=es.empid where ispermanent='No' and es.empid in (select depthead from EmpDept);
++---------+----------------+
+| empname | emailid        |
++---------+----------------+
+| Neha    | neha@gmail.com |
++---------+----------------+
+
+17. Select the employee whose department off is monday
+  > select e.empname from Employee e left join EmpDept ed on e.department=ed.deptid where ed.dept_off='Monday';
++----------+
+| empname  |
++----------+
+| Neha     |
+| Abhishek |
+| Isha     |
++----------+
+3 rows in set (0.0012 sec)
+
+18. Select the indian clients details.
+ > select * from ClientTable c left join Country co on c.cid=co.cid where co.cname='India';
++----------+------------+-----+-----+-------+
+| ClientId | ClientName | cid | cid | cname |
++----------+------------+-----+-----+-------+
+| cl-1     | ABC Group  | c-1 | c-1 | India |
+| cl-2     | PQR        | c-1 | c-1 | India |
++----------+------------+-----+-----+-------+
+2 rows in set (0.0014 sec)
+
+19. Select the details of all employee working in development department.
+  > select e.* from Employee e left join EmpDept ed on e.department=ed.deptid where ed.deptname='Development';
++-------+---------+------------+------------+-----------------+-----------+
+| Empid | EmpName | Department | ContactNo  | EmailId         | EmpHeadId |
++-------+---------+------------+------------+-----------------+-----------+
+|   104 | Rahul   | E-102      | 1234567890 | rahul@yahoo.com |       105 |
++-------+---------+------------+------------+-----------------+-----------+
+
+20. Create a procedure to calculate the average salaries of employees.
+
+DELIMITER //
+CREATE PROCEDURE averageSalary ()
+BEGIN
+SELECT avg(salary)
+FROM EmpSalary;
+END //
+DELIMITER ;
+
+> call averageSalary();
++-------------+
+| avg(salary) |
++-------------+
+|   4240.0000 |
++-------------+
+1 row in set (0.0022 sec)
+
+Query OK, 0 rows affected (0.0022 sec)
+
+21. Join first tow tables using inner join.
+
+> select * from employeen e inner join EmpDept d on e.Department=d.DeptId;
++-------+----------+------------+------------+--------------------+-----------+--------+-------------+----------+----------+
+| Empid | EmpName  | Department | ContactNo  | EmailId            | EmpHeadId | DeptId | DeptName    | Dept_off | DeptHead |
++-------+----------+------------+------------+--------------------+-----------+--------+-------------+----------+----------+
+|   105 | Abhishek | E-101      | 1234567890 | abhishek@gmail.com |       102 | E-101  | HR          | Monday   |      105 |
+|   103 | Neha     | E-101      | 1234567890 | neha@gmail.com     |       101 | E-101  | HR          | Monday   |      105 |
+|   101 | Isha     | E-101      | 1234567890 | isha@gmail.com     |       105 | E-101  | HR          | Monday   |      105 |
+|   104 | Rahul    | E-102      | 1234567890 | rahul@yahoo.com    |       105 | E-102  | Development | Tuesday  |      101 |
+|   102 | Priya    | E-104      | 1234567890 | priya@yahoo.com    |       103 | E-104  | Sales       | Sunday   |      104 |
++-------+----------+------------+------------+--------------------+-----------+--------+-------------+----------+----------+
+
+22. Create a copy of employee table, add three extra entries in it and find the union, difference
+and intersect.
+>create table employeenCopy as select * from employeen;
+> select * from employeenCopy;
++-------+----------+------------+------------+--------------------+-----------+
+| Empid | EmpName  | Department | ContactNo  | EmailId            | EmpHeadId |
++-------+----------+------------+------------+--------------------+-----------+
+|   101 | Isha     | E-101      | 1234567890 | isha@gmail.com     |       105 |
+|   102 | Priya    | E-104      | 1234567890 | priya@yahoo.com    |       103 |
+|   103 | Neha     | E-101      | 1234567890 | neha@gmail.com     |       101 |
+|   104 | Rahul    | E-102      | 1234567890 | rahul@yahoo.com    |       105 |
+|   105 | Abhishek | E-101      | 1234567890 | abhishek@gmail.com |       102 |
++-------+----------+------------+------------+--------------------+-----------+
+
+> select * from employeenCopy union select * from employeen;
++-------+----------+------------+------------+--------------------+-----------+
+| Empid | EmpName  | Department | ContactNo  | EmailId            | EmpHeadId |
++-------+----------+------------+------------+--------------------+-----------+
+|   101 | Isha     | E-101      | 1234567890 | isha@gmail.com     |       105 |
+|   102 | Priya    | E-104      | 1234567890 | priya@yahoo.com    |       103 |
+|   103 | Neha     | E-101      | 1234567890 | neha@gmail.com     |       101 |
+|   104 | Rahul    | E-102      | 1234567890 | rahul@yahoo.com    |       105 |
+|   105 | Abhishek | E-101      | 1234567890 | abhishek@gmail.com |       102 |
++-------+----------+------------+------------+--------------------+-----------+
+
+> select * from employeenCopy except select * from employeen;
+Empty set (0.00 sec)
+
+> select * from employeenCopy intersect select * from employeen;
++-------+----------+------------+------------+--------------------+-----------+
+| Empid | EmpName  | Department | ContactNo  | EmailId            | EmpHeadId |
++-------+----------+------------+------------+--------------------+-----------+
+|   101 | Isha     | E-101      | 1234567890 | isha@gmail.com     |       105 |
+|   102 | Priya    | E-104      | 1234567890 | priya@yahoo.com    |       103 |
+|   103 | Neha     | E-101      | 1234567890 | neha@gmail.com     |       101 |
+|   104 | Rahul    | E-102      | 1234567890 | rahul@yahoo.com    |       105 |
+|   105 | Abhishek | E-101      | 1234567890 | abhishek@gmail.com |       102 |
++-------+----------+------------+------------+--------------------+-----------+
+
+
+23. Create a procedure to pass employee id as input and generate his id, salary, contact number
+and department name as output.
+> delimiter $$
+> create procedure p_getdetails(v_empid int)
+    -> begin
+    -> select e.EmpId,s.Salary,e.ContactNo,d.DeptName from employeen e inner join EmpSalary s on s.EmpId=e.Empid inner join EmpDept d on e.Department = d.DeptId  where e.Empid=v_empid;
+    -> end $$
+Query OK, 0 rows affected (0.01 sec)
+
+> delimiter ;
+> call p_getdetails(105);
++-------+--------+------------+----------+
+| EmpId | Salary | ContactNo  | DeptName |
++-------+--------+------------+----------+
+|   105 |   2300 | 1234567890 | HR       |
++-------+--------+------------+----------+
+24. Create a view for the data retrieved client name, project id, start and end year.
+
+> create view view_client as select ClientName, p.ProjectId, p.StartYear,p.EndYear from  EmpProject p inner join ClientTable c on c.ClientId=p.ClientId;
+
+> select * from view_client;
++------------+-----------+-----------+---------+
+| ClientName | ProjectId | StartYear | EndYear |
++------------+-----------+-----------+---------+
+| ABC Group  | p-4       |      2014 |    2015 |
+| ABC Group  | p-1       |      2010 |    2010 |
+| PQR        | p-2       |      2010 |    2012 |
+| XYZ        | p-1       |      2013 |       0 |
+| mnp        | p-4       |      2015 |       0 |
++------------+-----------+-----------+---------+
+
+25. Calculate average salary of permanent employees.
+
+> select avg(Salary) as 'avg salary' from EmpSalary where IsPermanent='Yes';
++------------+
+| avg salary |
++------------+
+|  4050.0000 |
++------------+
+
+26. Create a function to print department off when department name is given as input.
+
+> delimiter $$
+> create function f_doff(v_deptname varchar(15))
+    -> returns varchar(10)
+    -> deterministic
+    -> begin
+    -> declare oupt varchar(15);
+    -> select Dept_off into oupt from EmpDept where DeptName=v_deptname;
+    -> return (oupt);
+    -> end $$
+Query OK, 0 rows affected (0.01 sec)
+> delimiter ;
+
+> select f_doff('HR');
++--------------+
+| f_doff('HR') |
++--------------+
+| Monday       |
++--------------+
+
+27. Write a function to deduct the 10% TDS from employees salary. The selct statement should generate empid, salary after TDS, and department name on screen.
+
+> create Function deduct_tds(num int)
+    -> returns varchar(100)
+    -> deterministic
+    -> begin 
+    -> declare empid int;
+    -> declare sal float;
+    -> declare dept_name varchar(20);
+    -> select c.Empid,(c.Salary*0.9),c.DeptName into empid,sal,dept_name from (select a.Empid,a.Department,a.ContactNo,d.DeptName,a.Salary from EmpDept d inner join (select e.Empid,e.Department,e.ContactNo,s.Salary from employeen e inner join EmpSalary s on e.Empid=s.EmpId) a on a.Department=d.DeptId ) c where Empid=num;
+    -> return concat(empid,' ',sal,' ',dept_name);
+    -> end &&
+Query OK, 0 rows affected (0.01 sec)
+> delimiter ;
+
+28. Write a cursor to extract id, name, contact and email from first table and store it in another tenporary table.
+
+> delimiter $$
+> create procedure sp_process_emp()
+    -> begin
+    -> declare v_flag int default 0;
+    -> declare v_eid int;
+    -> declare v_ename varchar(20);
+    -> declare v_contact int;
+    -> declare v_mail varchar(40);
+    -> declare v_cur cursor for select Empid, EmpName, ContactNo, EmailId from employeen;
+    -> declare continue handler for not found set v_flag=1;
+    -> drop table if exists result;
+    -> create table result(eid int,ename varchar(20),contact int ,mail varchar(40));
+    -> open v_cur;
+    -> process : loop
+    -> fetch v_cur into v_eid,v_ename,v_contact,v_mail;
+    -> if v_flag = 1 then
+    -> leave process;
+    -> end if;
+    -> insert into result values(v_eid,v_ename,v_contact,v_mail);
+    -> end loop;
+    -> close v_cur;
+    -> end $$
+Query OK, 0 rows affected (0.01 sec)
+
+> delimiter ;
+> call sp_process_emp();
+Query OK, 0 rows affected (0.08 sec)
+
+> select * from result;
++------+----------+------------+--------------------+
+| eid  | ename    | contact    | mail               |
++------+----------+------------+--------------------+
+|  101 | Isha     | 1234567890 | isha@gmail.com     |
+|  102 | Priya    | 1234567890 | priya@yahoo.com    |
+|  103 | Neha     | 1234567890 | neha@gmail.com     |
+|  104 | Rahul    | 1234567890 | rahul@yahoo.com    |
+|  105 | Abhishek | 1234567890 | abhishek@gmail.com |
++------+----------+------------+--------------------+
+
+29. Create a trigger on first table to check that user inserted dept head id between 101 and 105 or not. If he doesnt enter the same, make dept head id as 100.
+
+> delimiter &&
+> create trigger before_insert_EmpDept
+    -> before insert on EmpDept for each row
+    -> begin
+    -> if(new.DeptHead > 105 or new.DeptHead < 100) then
+    -> set new.DeptHead=100;
+    -> end if;
+    -> end && 
+Query OK, 0 rows affected (0.01 sec)
+
+> delimiter ;
+> INSERT INTO EmpDept (DeptId, DeptName, Dept_off, DeptHead) VALUES ('E-106', 'Marketing', 'Tuesday', 106);
+Query OK, 1 row affected (0.01 sec)
+
+> select * from EmpDept;
++--------+--------------+----------+----------+
+| DeptId | DeptName     | Dept_off | DeptHead |
++--------+--------------+----------+----------+
+| E-101  | HR           | Monday   |      105 |
+| E-102  | Development  | Tuesday  |      101 |
+| E-103  | Hous Keeping | Saturday |      103 |
+| E-104  | Sales        | Sunday   |      104 |
+| E-105  | Purchage     | Tuesday  |      104 |
+| E-106  | Marketing    | Tuesday  |      100 |
++--------+--------------+----------+----------+
+
+30. Create a trigger to create the log for updation done on first two tables. The log table will contain the changes made by user on both of these tables.
+
+
+> create table employeen_log(what_changes text);
+Query OK, 0 rows affected (0.04 sec)
+
+> delimiter &&
+> create trigger after_update_employeen
+    -> after update on employeen for each row
+    -> begin
+    -> insert into employeen_log values(concat('Previous: ',old.EmpHeadId,' Updated :',new.EmpHeadId));
+    -> end &&
+Query OK, 0 rows affected (0.02 sec)
+
+> delimiter ;
+> update employeen set EmpHeadId= 106 where EmpId=101;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+> select * from employeen_log;
++----------------------------+
+| what_changes               |
++----------------------------+
+| Previous: 105 Updated :106 |
++----------------------------+
+
+

@@ -1,0 +1,23 @@
+--query without any optimization
+--SELECT
+--  hdo.*,
+--  hdc.continent
+--FROM hiredata_opt AS hdo
+--INNER JOIN hiredata_continent AS hdc
+--  ON hdo.country = hdc.country
+--WHERE hdo.city = '${city_var}';
+
+
+--MAPJOIN strategy has been used because t2 is significantly is smaller than t1.
+--t1 will be loaded on the memory for faster execution.
+
+SELECT /*+ MAPJOIN(hiredata_continent) */
+  t1.*,
+  t2.continent
+FROM hiredata_opt t1
+JOIN (SELECT /*+ MAPJOIN */
+  *
+FROM hiredata_continent) t2
+  ON t1.country = t2.country
+WHERE t1.city = '${city_var}';
+

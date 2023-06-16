@@ -1,0 +1,85 @@
+---
+title: "assignment/Rmd"
+author: "Anup Painuly"
+PRN: "230340125007"
+date: "2023-05-14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+setting up the work environment and loading the libraries
+```{r}
+#setting up the working environment
+setwd("/home/darkstar/Documents/pg-dbda/module5_R-Programming/assignments/R_Assignment")
+
+#loading the libraries
+library(dplyr)
+library(ggplot2)
+
+```
+
+Dataset
+```{r}
+#loading the data set
+HR <- read.csv("HR_Attrition.csv")
+str(HR)
+```
+
+
+Question number One:
+```{r}
+
+#Q1.Filter the data with Marital Status as Single and Job Role as Research Director
+subset_HR <- subset(HR,MaritalStatus == 'Single' & JobRole == 'Research Director')
+head(subset_HR)
+
+```
+Question number two:
+```{r}
+
+#Q2.Generate a frequency table for all the Job Roles
+table_freq <- table(HR$JobRole)
+print(freq_df <- as.data.frame(table_freq))
+```
+
+Question number three:
+```{r}
+#Q3.Calculate the mean Hourly Rate for every Gender and plot the means with ggplot functions.
+avg_hourlyRate <- HR %>% 
+  group_by(Gender) %>% 
+    summarise(avg_hourlyRate = mean(HourlyRate))
+
+ggplot(avg_hourlyRate,aes(x=Gender,y=avg_hourlyRate,fill=Gender))+
+  scale_fill_brewer(palette="Green")+
+    geom_bar(stat="identity",color="black")+
+      theme_classic()+ggtitle("Bar Plot\nGenderwise mean hourly rate")+
+        labs(y="Mean Hourly Rate")
+```
+
+
+Question number four:
+```{r}
+#Q4.Generate Histogram for Monthly Income
+ggplot(data=HR, aes(x=MonthlyIncome))+
+      geom_histogram(bins=5, fill="black",color="green")+
+        labs(x="Monthly Income", y="frequency")+
+          ggtitle("Histogram\nFrequency of Monthly Income")+
+            theme_classic()
+```
+
+Question number five:
+```{r}
+
+#Q5.Generate the scatter plot with X-axis as Monthly Rate and 
+#Y-axis as Monthly Income with color as Department
+
+ggplot(data=HR,aes(x=MonthlyRate,y=MonthlyIncome,col=Department))+
+    geom_point()+
+      geom_smooth(method=lm,se=F)+
+        scale_colour_brewer(palette="Set1")+
+          theme_classic()+ggtitle("Scatter Plot\nMonthly Income vs Monthly Rate")
+```
+

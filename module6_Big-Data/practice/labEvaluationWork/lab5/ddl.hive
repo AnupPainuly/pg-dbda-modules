@@ -1,0 +1,26 @@
+
+DROP TABLE IF EXISTS hiredata;
+CREATE TABLE hiredata (
+    country STRING,
+    city STRING,
+    designation STRING,
+    salary FLOAT)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+LOCATION '/user/cloudera/hire_data_etl/';
+
+DROP TABLE IF EXISTS hiredata_continent;
+CREATE TABLE hiredata_continent (
+    country STRING,
+    continent STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
+
+--dynamic table creation and storing it in ORC for faster execution
+DROP TABLE IF EXISTS hiredata_opt ;
+CREATE TABLE hiredata_opt (
+    city STRING,
+    designation STRING,
+    salary FLOAT)
+    PARTITIONED BY (country STRING)
+    CLUSTERED BY (city) into 4 buckets
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS ORC;

@@ -1,0 +1,56 @@
+#!/bin/bash
+#FIXME: Implement long form of Option
+
+function fahrenheit_to_celsius(){
+
+    fahrenheit=$1
+    conversion=$(awk "BEGIN {printf \"%.2f\", ($fahrenheit-32) * 5/9}")
+    echo $conversion
+}
+function celsius_to_fahrenheit(){
+
+    celsius=$1
+    conversion=$(awk "BEGIN {printf \"%.2f\", ($celsius*1.8)+32}")
+    echo $conversion
+}
+
+function helper(){
+    echo -e "Usage: temp_converter [OPTION] [TEMPERATURE] \n
+    -c convert the temperature from celsius to fahrenheit \n
+    -f convert the temperature from fahrenheit to celsius"
+
+}
+
+if [[ -z "$1" ]] #check if arg is missing
+then
+    echo arg missing
+    helper
+fi
+
+while getopts "c:f:h" opt; do
+    case $opt in
+        h)# display hepler function
+            helper
+            exit
+            ;;
+        c)# cel to far
+            if [[ $1 == "-c" ]];then
+                celsius_to_fahrenheit $2
+            else
+                echo "Unknown argument $1 "
+            fi
+            exit
+            ;;
+        f)#far to cel
+            if [[ $1 == "-f" ]];then
+                fahrenheit_to_celsius $2
+            else
+                echo "Unknow argument $1"
+            fi
+            exit
+            ;;
+        *)
+            exit
+            ;;
+    esac
+done

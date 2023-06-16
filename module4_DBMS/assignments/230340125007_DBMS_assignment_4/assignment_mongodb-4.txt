@@ -1,0 +1,257 @@
+books (refno, name, author, coauthor, pages price)
+
+____________________________________________________________
+Refno	name 		author		coauthor	pages	price   |
+____________________________________________________________|
+1001 | 	Python Prog	| Shyam	   |Rakesh		| 350 	| 450   |
+1002 |	Java Prog	| Amita	   |		    | 300 	| 500   |
+1003 |	HTML		| Amita	   |Shyam		| 225 	| 300   |
+1004 |	MongoDB		| Shyam	   |		    | 440 	| 500   |
+1005 |	MySQL		|Shrikan   |Nitin		| 330 	| 630   |
+____________________________________________________________|
+
+Create Collection
+Solution:
+pgdbda> db.createCollection('books')
+{ ok: 1 }
+
+Insert data
+pgdbda> db.books.insert({refno:1001,name:'Python Prog',author:'Shyam',coauthor:'Rakesh',pages:350,price:450})
+pgdbda> db.books.insert({refno:1002,name:'Java Prog',author:'Amita',pages:300,price:500})
+pgdbda> db.books.insert({refno:1003,name:'HTML',author:'Amita',coauthor:'Shyam',pages:225,price:300})
+pgdbda> db.books.insert({refno:1004,name:'MongoDB',author:'Shyam',pages:440,price:500})
+pgdbda> db.books.insert({refno:1004,name:'MySQL',author:'Shrikant',coauthor:'Nitin',pages:330,price:630})
+
+pgdbda> db.books.find()
+[
+  {
+    _id: ObjectId("6459331dcf518a4f0f75aef3"),
+    refno: 1001,
+    name: 'Python Prog',
+    author: 'Shyam',
+    coauthor: 'Rakesh',
+    pages: 350,
+    price: 450
+  },
+  {
+    _id: ObjectId("64593371cf518a4f0f75aef4"),
+    refno: 1002,
+    name: 'Java Prog',
+    author: 'Amita',
+    pages: 300,
+    price: 500
+  },
+  {
+    _id: ObjectId("645933c5cf518a4f0f75aef5"),
+    refno: 1003,
+    name: 'HTML',
+    author: 'Amita',
+    coauthor: 'Shyam',
+    pages: 225,
+    price: 300
+  },
+  {
+    _id: ObjectId("645933f0cf518a4f0f75aef6"),
+    refno: 1004,
+    name: 'MongoDB',
+    author: 'Shyam',
+    pages: 440,
+    price: 500
+  },
+  {
+    _id: ObjectId("64593423cf518a4f0f75aef7"),
+    refno: 1004,
+    name: 'MySQL',
+    author: 'Shrikant',
+    coauthor: 'Nitin',
+    pages: 330,
+    price: 630
+  }
+]
+
+1.Count how many books wrote by Amita
+Solution:
+pgdbda> db.books.find({author:'Amita'}).count()
+
+
+2.Count total books written by Shyam
+Solution:
+pgdbda> db.books.find({$or: [{author:'Shyam'},{coauthor:'Shyam'}]}).count()
+
+
+3.How many authors books are available in libraty?
+Solution:
+pgdbda> db.books.count({$or:[{author:{$exists:true}},{coauthor:{$exists:true}}]})
+
+
+4.Find average cost of books in libary
+Solution:
+pgdbda> db.books.aggregate([{$group:{_id:"",Avg:{$avg:'$price'}}}])
+[ { _id: '', Avg: 476 } ]
+
+5.Find total number of pages of books authored by Shyam
+Solution:
+pgdbda> db.books.aggregate([{$group:{_id:{$or :[{author:'shyam'},{coauthor:'Shyam'}]},Total:{$sum:'$pages'}}}])
+[ { _id: true, Total: 1645 } ]
+
+6.Sort the book by desending order of pages
+Solution:
+pgdbda> db.books.find().sort({'pages':-1})
+[
+  {
+    _id: ObjectId("645933f0cf518a4f0f75aef6"),
+    refno: 1004,
+    name: 'MongoDB',
+    author: 'Shyam',
+    pages: 440,
+    price: 500
+  },
+  {
+    _id: ObjectId("6459331dcf518a4f0f75aef3"),
+    refno: 1001,
+    name: 'Python Prog',
+    author: 'Shyam',
+    coauthor: 'Rakesh',
+    pages: 350,
+    price: 450
+  },
+  {
+    _id: ObjectId("64593423cf518a4f0f75aef7"),
+    refno: 1004,
+    name: 'MySQL',
+    author: 'Shrikant',
+    coauthor: 'Nitin',
+    pages: 330,
+    price: 630
+  },
+  {
+    _id: ObjectId("64593371cf518a4f0f75aef4"),
+    refno: 1002,
+    name: 'Java Prog',
+    author: 'Amita',
+    pages: 300,
+    price: 500
+  },
+  {
+    _id: ObjectId("645933c5cf518a4f0f75aef5"),
+    refno: 1003,
+    name: 'HTML',
+    author: 'Amita',
+    coauthor: 'Shyam',
+    pages: 225,
+    price: 300
+  }
+]
+
+
+7.Change the id of books 'MongoDB' to 1014
+Solution:
+pgdbda> db.books.updateOne({refno:1004},{$set:{refno:1014}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+pgdbda> db.books.find({refno:1014})
+[
+  {
+    _id: ObjectId("645933f0cf518a4f0f75aef6"),
+    refno: 1014,
+    name: 'MongoDB',
+    author: 'Shyam',
+    pages: 440,
+    price: 500
+  }
+]
+
+
+8.Find total books whose cost is above 400
+Aner
+pgdbda> db.books.find({price:{$gt:400}})
+[
+  {
+    _id: ObjectId("6459331dcf518a4f0f75aef3"),
+    refno: 1001,
+    name: 'Python Prog',
+    author: 'Shyam',
+    coauthor: 'Rakesh',
+    pages: 350,
+    price: 450
+  },
+  {
+    _id: ObjectId("64593371cf518a4f0f75aef4"),
+    refno: 1002,
+    name: 'Java Prog',
+    author: 'Amita',
+    pages: 300,
+    price: 500
+  },
+  {
+    _id: ObjectId("645933f0cf518a4f0f75aef6"),
+    refno: 1014,
+    name: 'MongoDB',
+    author: 'Shyam',
+    pages: 440,
+    price: 500
+  },
+  {
+    _id: ObjectId("64593423cf518a4f0f75aef7"),
+    refno: 1004,
+    name: 'MySQL',
+    author: 'Shrikant',
+    coauthor: 'Nitin',
+    pages: 330,
+    price: 630
+  }
+]
+
+9.Delete the co-author of book 'MySQL'
+Solution:
+pgdbda> db.books.deleteOne({coauthor:'Nitin'})
+{ acknowledged: true, deletedCount: 1 }
+
+pgdbda> db.books.find()
+[
+  {
+    _id: ObjectId("6459331dcf518a4f0f75aef3"),
+    refno: 1001,
+    name: 'Python Prog',
+    author: 'Shyam',
+    coauthor: 'Rakesh',
+    pages: 350,
+    price: 450
+  },
+  {
+    _id: ObjectId("64593371cf518a4f0f75aef4"),
+    refno: 1002,
+    name: 'Java Prog',
+    author: 'Amita',
+    pages: 300,
+    price: 500
+  },
+  {
+    _id: ObjectId("645933c5cf518a4f0f75aef5"),
+    refno: 1003,
+    name: 'HTML',
+    author: 'Amita',
+    coauthor: 'Shyam',
+    pages: 225,
+    price: 300
+  },
+  {
+    _id: ObjectId("645933f0cf518a4f0f75aef6"),
+    refno: 1014,
+    name: 'MongoDB',
+    author: 'Shyam',
+    pages: 440,
+    price: 500
+  }
+]
+
+
+
+
+

@@ -1,0 +1,9 @@
+1. Count how many books wrote by Amita.
+2. Count total books written by Shyam.
+3. How many author's books are available in library?
+4. Find average cost of books in library.
+5. Find total number of pages of books authored by Shyam.
+6. Sort the books by descending order of pages.
+7. Change the id of book 'MongoDB' to 1014.
+8. Find total books whose cost is above 400.
+9. Delete the co-author of book 'MySQL'.

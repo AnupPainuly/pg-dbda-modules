@@ -1,0 +1,8 @@
+drop table if exists hiredata ;
+create table hiredata (
+country string,
+city string,
+designation string,
+salary FLOAT)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+LOCATION '/user/cloudera/hire_data_etl/';

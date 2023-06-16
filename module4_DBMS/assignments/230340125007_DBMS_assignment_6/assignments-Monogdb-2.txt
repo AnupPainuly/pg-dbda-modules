@@ -1,0 +1,396 @@
+dbda@dbda-HP-406-G1-MT> db.stu.find()
+[
+  {
+    _id: ObjectId("645ca99c10626bd5af3aea27"),
+    PRN: 12345,
+    Name: 'Alisha',
+    Age: 23,
+    Year_Admitted: 2014,
+    Percentage: 89.23
+  },
+  {
+    _id: ObjectId("645ca9d110626bd5af3aea28"),
+    PRN: 12346,
+    Name: 'Arjun',
+    Age: 34,
+    Year_Admitted: 2018,
+    Percentage: 67.23
+  },
+  {
+    _id: ObjectId("645ca9ef10626bd5af3aea29"),
+    PRN: 12347,
+    Name: 'Rakesh',
+    Age: 24
+  },
+  {
+    _id: ObjectId("645caa4f10626bd5af3aea2a"),
+    PRN: 12348,
+    Name: 'Amruta',
+    Age: 21,
+    Year_Admitted: 2021,
+    Percentage: 76.35,
+    Passed_Out: 2023
+  },
+  {
+    _id: ObjectId("645caa8b10626bd5af3aea2b"),
+    PRN: 12349,
+    Name: 'Rehan',
+    Age: 23,
+    Year_Admitted: 2016,
+    Percentage: 67.12,
+    Passed_Out: 2021
+  },
+  {
+    _id: ObjectId("645caad310626bd5af3aea2c"),
+    PRN: 12350,
+    Name: 'Roshan',
+    Age: 28,
+    Year_Admitted: 2020
+  },
+  {
+    _id: ObjectId("645cab0510626bd5af3aea2d"),
+    PRN: 12351,
+    Name: 'Raghu',
+    Age: 22,
+    Year_Admitted: 2016,
+    Percentage: 78.34
+  },
+  {
+    _id: ObjectId("645cab4c10626bd5af3aea2e"),
+    PRN: 12352,
+    Name: 'Praskah',
+    Age: 25,
+    Year_Admitted: 2019,
+    Percentage: 82.44,
+    Passed_Out: 2022
+  }
+]
+
+
+Q1. Print all the documents where ages are above 25 years.
+dbda@dbda-HP-406-G1-MT> db.stu.find({Age:{$gt:25}})
+[
+  {
+    _id: ObjectId("645ca9d110626bd5af3aea28"),
+    PRN: 12346,
+    Name: 'Arjun',
+    Age: 34,
+    Year_Admitted: 2018,
+    Percentage: 67.23
+  },
+  {
+    _id: ObjectId("645caad310626bd5af3aea2c"),
+    PRN: 12350,
+    Name: 'Roshan',
+    Age: 28,
+    Year_Admitted: 2020
+  }
+]
+
+Q2. Count how many students have passed out from here.
+dbda@dbda-HP-406-G1-MT> db.stu.find({Passed_Out:{$exists:1}})
+[
+  {
+    _id: ObjectId("645caa4f10626bd5af3aea2a"),
+    PRN: 12348,
+    Name: 'Amruta',
+    Age: 21,
+    Year_Admitted: 2021,
+    Percentage: 76.35,
+    Passed_Out: 2023
+  },
+  {
+    _id: ObjectId("645caa8b10626bd5af3aea2b"),
+    PRN: 12349,
+    Name: 'Rehan',
+    Age: 23,
+    Year_Admitted: 2016,
+    Percentage: 67.12,
+    Passed_Out: 2021
+  },
+  {
+    _id: ObjectId("645cab4c10626bd5af3aea2e"),
+    PRN: 12352,
+    Name: 'Praskah',
+    Age: 25,
+    Year_Admitted: 2019,
+    Percentage: 82.44,
+    Passed_Out: 2022
+  }
+]
+
+Q3. Sort the documents in the descending order of year admitted.
+db.stu.find({ "Year_Admitted": { "$exists": true }}).sort({'Year_Admitted': -1})
+[
+  {
+    _id: ObjectId("645caa4f10626bd5af3aea2a"),
+    PRN: 12348,
+    Name: 'Amruta',
+    Age: 21,
+    Year_Admitted: 2021,
+    Percentage: 76.35,
+    Passed_Out: 2023
+  },
+  {
+    _id: ObjectId("645caad310626bd5af3aea2c"),
+    PRN: 12350,
+    Name: 'Roshan',
+    Age: 28,
+    Year_Admitted: 2020
+  },
+  {
+    _id: ObjectId("645cab4c10626bd5af3aea2e"),
+    PRN: 12352,
+    Name: 'Praskah',
+    Age: 25,
+    Year_Admitted: 2019,
+    Percentage: 82.44,
+    Passed_Out: 2022
+  },
+  {
+    _id: ObjectId("645ca9d110626bd5af3aea28"),
+    PRN: 12346,
+    Name: 'Arjun',
+    Age: 34,
+    Year_Admitted: 2018,
+    Percentage: 67.23
+  },
+  {
+    _id: ObjectId("645caa8b10626bd5af3aea2b"),
+    PRN: 12349,
+    Name: 'Rehan',
+    Age: 23,
+    Year_Admitted: 2016,
+    Percentage: 67.12,
+    Passed_Out: 2021
+  },
+  {
+    _id: ObjectId("645cab0510626bd5af3aea2d"),
+    PRN: 12351,
+    Name: 'Raghu',
+    Age: 22,
+    Year_Admitted: 2016,
+    Percentage: 78.34
+  },
+  {
+    _id: ObjectId("645ca99c10626bd5af3aea27"),
+    PRN: 12345,
+    Name: 'Alisha',
+    Age: 23,
+    Year_Admitted: 2014,
+    Percentage: 89.23
+  }
+]
+
+Q4. Find for how many students are yet studying here.
+dbda@dbda-HP-406-G1-MT> db.stu.find({ "Passed_Out": { "$exists": false }})
+[
+  {
+    _id: ObjectId("645ca99c10626bd5af3aea27"),
+    PRN: 12345,
+    Name: 'Alisha',
+    Age: 23,
+    Year_Admitted: 2014,
+    Percentage: 89.23
+  },
+  {
+    _id: ObjectId("645ca9d110626bd5af3aea28"),
+    PRN: 12346,
+    Name: 'Arjun',
+    Age: 34,
+    Year_Admitted: 2018,
+    Percentage: 67.23
+  },
+  {
+    _id: ObjectId("645ca9ef10626bd5af3aea29"),
+    PRN: 12347,
+    Name: 'Rakesh',
+    Age: 24
+  },
+  {
+    _id: ObjectId("645caad310626bd5af3aea2c"),
+    PRN: 12350,
+    Name: 'Roshan',
+    Age: 28,
+    Year_Admitted: 2020
+  },
+  {
+    _id: ObjectId("645cab0510626bd5af3aea2d"),
+    PRN: 12351,
+    Name: 'Raghu',
+    Age: 22,
+    Year_Admitted: 2016,
+    Percentage: 78.34
+  }
+]
+
+Q5. Find the average age of students studying here.
+dbda@dbda-HP-406-G1-MT> db.stu.aggregate([{$match:{Passed_Out:{$exists:0}}},{$group:{_id:"",avg_age:{$avg:"$Age"}}}])
+[ { _id: '', avg_age: 26.2 } ]
+
+Q6. Print the information of student whose PRN is between 12347 to 12351, sorted by their 
+name in ascending order.
+dbda@dbda-HP-406-G1-MT> db.stu.find({$and:[{"PRN":{$gt:12347, $lt:12351}}]}).sort({"PRN":1})
+[
+  {
+    _id: ObjectId("645caa4f10626bd5af3aea2a"),
+    PRN: 12348,
+    Name: 'Amruta',
+    Age: 21,
+    Year_Admitted: 2021,
+    Percentage: 76.35,
+    Passed_Out: 2023
+  },
+  {
+    _id: ObjectId("645caa8b10626bd5af3aea2b"),
+    PRN: 12349,
+    Name: 'Rehan',
+    Age: 23,
+    Year_Admitted: 2016,
+    Percentage: 67.12,
+    Passed_Out: 2021
+  },
+  {
+    _id: ObjectId("645caad310626bd5af3aea2c"),
+    PRN: 12350,
+    Name: 'Roshan',
+    Age: 28,
+    Year_Admitted: 2020
+  }
+]
+
+Q7. Find the average marks of students who have not yet passed out.
+dbda@dbda-HP-406-G1-MT> db.stu.aggregate([{$match:{Passed_Out:{$exists:0}}},{$group:{_id:"",Avg_Perc:{$avg:"$Percentage"}}}])
+[ { _id: '', Avg_Perc: 78.26666666666667 }]
+
+Q8. Count how many students are admitted after 2018.
+dbda@dbda-HP-406-G1-MT> db.stu.aggregate([{$match:{Year_Admitted:{$gt:2018}}},{$count:"PRN"}])
+[ { PRN: 3 } ]
+
+Q9. Find the average marks of students who were admitted begore 2017.
+dbda@dbda-HP-406-G1-MT> db.stu.aggregate([{$match:{Year_Admitted:{$lt:2017}}},{$group:{_id:"",Avg_Perc:{$avg:"$Percentage"}}}])
+[ { _id: '', Avg_Perc: 78.23 } ]
+
+Q10. Print the name of student with highest age.
+dbda@dbda-HP-406-G1-MT> db.stu.aggregate([{$group:{_id:"",Max_age:{$max:"$Age"}}}])
+[ { _id: '', Max_age: 34 } ]
+
+Q11. Find for how many years are taken by students to complete their study.
+
+pgdbda> db.students.aggregate([{$match:{PassedOut:{$exists:1}}},{$project:{PRN:1,YearAdmitted:1,PassedPassedOut:1,_id:0, years:{$subtract:["$PassedOut","$YearAdmitted"]}}}])
+[
+  { PRN: 12348, YearAdmitted: 2021, PassedOut: 2023, years: 2 },
+  { PRN: 12349, YearAdmitted: 2016, PassedOut: 2021, years: 5 },
+  { PRN: 12352, YearAdmitted: 2019, PassedOut: 2022, years: 3 }
+]
+
+
+Q12. In which year, the student got highest marks.
+dbda@dbda-HP-406-G1-MT> db.stu.find({},{Year_Admitted:true,_id:false}).sort({Percentage:-1}).limit(1)
+[ { Year_Admitted: 2014 } ]
+
+Q13. Delete the entry of students who are not yet admitted.
+pgdbda> db.students.deleteOne({YearAdmitted:{$exists:0}})
+{ acknowledged: true, deletedCount: 1 }
+pgdbda> db.students.find({YearAdmitted:{$exists:0}})
+
+Q14. The PRN number 12346 is passed out in 2023. Update this change.
+pgdbda> db.students.update({PRN:12346},{$set:{PassedOut:2023}})
+pgdbda> db.students.find({PRN:12346})
+[
+  {
+    _id: ObjectId("645caa6b9d021cb9b434a2b8"),
+    PRN: 12346,
+    Name: 'Arjun',
+    Age: 34,
+    YearAdmitted: 2018,
+    Percentage: 67.23,
+    PassedOut: 2023
+  }
+]
+
+Q15. Find names of the student who has not given examination yet.
+dbda@dbda-HP-406-G1-MT> db.stu.find({Percentage:{$exists:false}})
+[
+  {
+    _id: ObjectId("645ca9ef10626bd5af3aea29"),
+    PRN: 12347,
+    Name: 'Rakesh',
+    Age: 24
+  },
+  {
+    _id: ObjectId("645caad310626bd5af3aea2c"),
+    PRN: 12350,
+    Name: 'Roshan',
+    Age: 28,
+    Year_Admitted: 2020
+  }
+]
+Q16. Print the information of students in the order of year of admission.
+dbda@dbda-HP-406-G1-MT> db.stu.find({}).sort({Year_Admitted:1})
+[
+  {
+    _id: ObjectId("645ca9ef10626bd5af3aea29"),
+    PRN: 12347,
+    Name: 'Rakesh',
+    Age: 24
+  },
+  {
+    _id: ObjectId("645ca99c10626bd5af3aea27"),
+    PRN: 12345,
+    Name: 'Alisha',
+    Age: 23,
+    Year_Admitted: 2014,
+    Percentage: 89.23
+  },
+  {
+    _id: ObjectId("645caa8b10626bd5af3aea2b"),
+    PRN: 12349,
+    Name: 'Rehan',
+    Age: 23,
+    Year_Admitted: 2016,
+    Percentage: 67.12,
+    Passed_Out: 2021
+  },
+  {
+    _id: ObjectId("645cab0510626bd5af3aea2d"),
+    PRN: 12351,
+    Name: 'Raghu',
+    Age: 22,
+    Year_Admitted: 2016,
+    Percentage: 78.34
+  },
+  {
+    _id: ObjectId("645ca9d110626bd5af3aea28"),
+    PRN: 12346,
+    Name: 'Arjun',
+    Age: 34,
+    Year_Admitted: 2018,
+    Percentage: 67.23
+  },
+  {
+    _id: ObjectId("645cab4c10626bd5af3aea2e"),
+    PRN: 12352,
+    Name: 'Praskah',
+    Age: 25,
+    Year_Admitted: 2019,
+    Percentage: 82.44,
+    Passed_Out: 2022
+  },
+  {
+    _id: ObjectId("645caad310626bd5af3aea2c"),
+    PRN: 12350,
+    Name: 'Roshan',
+    Age: 28,
+    Year_Admitted: 2020
+  },
+  {
+    _id: ObjectId("645caa4f10626bd5af3aea2a"),
+    PRN: 12348,
+    Name: 'Amruta',
+    Age: 21,
+    Year_Admitted: 2021,
+    Percentage: 76.35,
+    Passed_Out: 2023
+  }
+]

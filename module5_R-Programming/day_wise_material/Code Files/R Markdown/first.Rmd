@@ -1,0 +1,35 @@
+---
+title: "firstMD"
+author: "Sanjay Sane"
+date: "2023-05-10"
+output: html_document
+---
+
+Loading the data
+```{r}
+setwd("C:/Training/Academy/R Course (C-DAC)/Datasets")
+cars93 <- read.csv("Cars93.csv")
+head(cars93)
+```
+
+
+Price Summary per type
+```{r}
+library(dplyr)
+cars93 %>% 
+  group_by(Type) %>%
+  summarise(avgprice = mean(Price, na.rm = T),
+            sd_price = sd(Price, na.rm=T))
+```
+
+Bar Chart of Price Summary
+```{r}
+summ_car <- cars93 %>% 
+  group_by(Type) %>%
+  summarise(avgprice = mean(Price, na.rm = T),
+            sd_price = sd(Price, na.rm=T))
+library(ggplot2)
+ggplot(data = summ_car, aes(x=Type, y=avgprice, fill=Type))+
+  geom_bar(stat='identity')
+```
+

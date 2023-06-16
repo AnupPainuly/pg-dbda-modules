@@ -1,0 +1,243 @@
+Q1.Write a mysql statement to find the name, bith department name, department block from the given tables?
+
+creating employee table-
+create table employee (id TINYINT, name varchar(15), dept_id TINYINT, birth Date);
+insert into employee values(1,'Maria Gloria',2,"1994-03-12");
+insert into employee values(2,'John Smith',1,"1993-02-07");
+insert into employee values(3,'Gal Rao',4,"1992-09-11");
+insert into employee values(4,'Jakey Smith',2,"1990-08-31");
+insert into employee values(5,'Rama Saho',1,"1994-12-09");
+insert into employee values(6,'Maria Gaga',4,"1993-10-09");
+
+create departments table-
+insert into department values(1,"Computer Science","B-Block")
+insert into department values(2,"Information Technology","C-Block")
+insert into department values(3,"Mechanical","A-Block")
+insert into department values(4,"Electronic Communication","D-Block")
+
+> select e.name, e.birth, d.dept_name, d.dept_block from employee e inner join departments d on e.dept_id=d.dept_id;
+
++--------------+------------+--------------------------+------------+
+| name         | birth      | dept_name                | dept_block |
++--------------+------------+--------------------------+------------+
+| Maria Gloria | 1994-03-12 | Information Technology   | C-Block    |
+| John Smith   | 1993-02-07 | Computer Science         | B-Block    |
+| Gal Rao      | 1992-09-11 | Electronic Communication | D-Block    |
+| Jakey Smith  | 1990-08-31 | Information Technology   | C-Block    |
+| Rama Saho    | 1994-12-09 | Computer Science         | B-Block    |
+| Maria Gaga   | 1993-10-09 | Electronic Communication | D-Block    |
++--------------+------------+--------------------------+------------+
+
+
+Q2. Write a MYSQL statement to get name of students containing exactly five characters with 'a' as last letter
+
+create table students (select * from employee);
+update students set name="Maria" where id=1;
+update students set name="John" where id=2;
+update students set name="Gal" where id=3;
+update students set name="Jakey" where id=4;
+update students set name="Rama" where id=5;
+update students set name="Maria" where id=6;
+
+> select name from students where name like "____%a";
++-------+
+| name  |
++-------+
+| Maria |
+| Maria |
++-------+
+
+
+Q3. write a mysql statement to determine the age of each of the students.
+
+create table departmentwiseStudents (Select * from students);
+alter table departmentwiseStudents add department varchar(2);
+
+update students set department="CS" where id=1;
+update students set department="IT" where id=2;
+update students set department="CS" where id=3;
+update students set department="EC" where id=4;
+update students set department="IT" where id=5;
+update students set department="EC" where id=6;
+
+ > select name, timestampdiff(year,birth,current_date()) from departmentwiseStudents;
++-------+------------------------------------------+
+| name  | timestampdiff(year,birth,current_date()) |
++-------+------------------------------------------+
+| Maria |                                       29 |
+| John  |                                       30 |
+| Gal   |                                       30 |
+| Jakey |                                       32 |
+| Rama  |                                       28 |
+| Maria |                                       29 |
++-------+------------------------------------------+
+
+
+Q4. These questions are bases on the following two tables, Emp and reward table.
+
+create table emp (Employee_id tinyint, first_name varchar(10), last_name varchar(10), salary int, joining_date date, department varchar(10));
+insert into emp values(1,'Bob','Kinto',1000000,'2019-01-20','Finance');
+insert into emp values(2,'Jerry','Kansxo',6000000,'2019-01-15','IT');
+insert into emp values(3,'Philip','Jose',8900000,'2019-02-05','Banking');
+insert into emp values(4,'John','Abraham',2000000,'2019-02-25','Insurance');
+insert into emp values(5,'Michael','Mathew',2200000,'2019-02-28','Finance');
+insert into emp values(6,'Alex','Chreketo',4000000,'2019-05-10','IT');
+insert into emp values(7,'Yohan','Soso',1230000,'2019-06-20','Banking');
+
+create table reward (Employee_ref_id tinyint, date_reward date, amount int);
+insert into reward values(1,'2019-05-11',1000);
+insert into reward values(2,'2019-01-15',5000);
+insert into reward values(3,'2019-04-22',2000);
+insert into reward values(1,'2019-06-20',8000);
+
+1.get all employees
+ > select * from emp;
++-------------+------------+-----------+---------+--------------+------------+
+| Employee_id | first_name | last_name | salary  | joining_date | department |
++-------------+------------+-----------+---------+--------------+------------+
+|           1 | Bob        | Kinto     | 1000000 | 2019-01-20   | Finance    |
+|           2 | Jerry      | Kansxo    | 6000000 | 2019-01-15   | IT         |
+|           3 | Philip     | Jose      | 8900000 | 2019-02-05   | Banking    |
+|           4 | John       | Abraham   | 2000000 | 2019-02-25   | Insurance  |
+|           5 | Michael    | Mathew    | 2200000 | 2019-02-28   | Finance    |
+|           6 | Alex       | Chreketo  | 4000000 | 2019-05-10   | IT         |
+|           7 | Yohan      | Soso      | 1230000 | 2019-06-20   | Banking    |
++-------------+------------+-----------+---------+--------------+------------+
+
+
+2. display the first name and last name of all employees
+ > select first_name, last_name from emp;
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| Bob        | Kinto     |
+| Jerry      | Kansxo    |
+| Philip     | Jose      |
+| John       | Abraham   |
+| Michael    | Mathew    |
+| Alex       | Chreketo  |
+| Yohan      | Soso      |
++------------+-----------+
+
+
+3. display all the values of the first_nam column using the alias "Empoyee Name"
+ > select first_name as "Employee Name" from emp;
++---------------+
+| Employee Name |
++---------------+
+| Bob           |
+| Jerry         |
+| Philip        |
+| John          |
+| Michael       |
+| Alex          |
+| Yohan         |
++---------------+
+
+
+4. get all last_name in lowercase
+
+> select lower(last_name) from emp;
++------------------+
+| lower(last_name) |
++------------------+
+| kinto            |
+| kansxo           |
+| jose             |
+| abraham          |
+| mathew           |
+| chreketo         |
+| soso             |
++------------------+
+
+5. get all last_name in uppercase
+> select upper(last_name) from emp;
++------------------+
+| upper(last_name) |
++------------------+
+| KINTO            |
+| KANSXO           |
+| JOSE             |
+| ABRAHAM          |
+| MATHEW           |
+| CHREKETO         |
+| SOSO             |
++------------------+
+
+
+6. get unique "Department"
+  > select distinct department from emp;
++------------+
+| department |
++------------+
+| Finance    |
+| IT         |
+| Banking    |
+| Insurance  |
++------------+
+
+7. get the first four characters of first_name column
+
+> select left(first_name,4) from emp;
++--------------------+
+| left(first_name,4) |
++--------------------+
+| Bob                |
+| Jerr               |
+| Phil               |
+| John               |
+| Mich               |
+| Alex               |
+| Yoha               |
++--------------------+
+
+
+8. get the position of the letter h in John
+  > select position("h" in (select first_name from emp where Employee_id=4 and first_name like "%h%")) as "position of h";
++---------------+
+| position of h |
++---------------+
+|             3 |
++---------------+
+
+
+9. get values from the first_name column after removing the white space on the right.
+ > select rtrim(first_name) from emp;
++-------------------+
+| rtrim(first_name) |
++-------------------+
+| Bob               |
+| Jerry             |
+| Philip            |
+| John              |
+| Michael           |
+| Alex              |
+| Yohan             |
++-------------------+
+
+
+10. get values from the first_name column after removing the white space on the left.
+ > select ltrim(first_name) from emp;
++-------------------+
+| rtrim(first_name) |
++-------------------+
+| Bob               |
+| Jerry             |
+| Philip            |
+| John              |
+| Michael           |
+| Alex              |
+| Yohan             |
++-------------------+
+
+
+11. write the syntax to create the employee table
+
+create table emp (Employee_id tinyint, first_name varchar(10), last_name varchar(10), salary int, joining_date date, department varchar(10));
+insert into emp values(1,'Bob','Kinto',1000000,'2019-01-20','Finance');
+insert into emp values(2,'Jerry','Kansxo',6000000,'2019-01-15','IT');
+insert into emp values(3,'Philip','Jose',8900000,'2019-02-05','Banking');
+insert into emp values(4,'John','Abraham',2000000,'2019-02-25','Insurance');
+insert into emp values(5,'Michael','Mathew',2200000,'2019-02-28','Finance');
+insert into emp values(6,'Alex','Chreketo',4000000,'2019-05-10','IT');
+insert into emp values(7,'Yohan','Soso',1230000,'2019-06-20','Banking');

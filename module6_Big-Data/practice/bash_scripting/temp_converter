@@ -1,0 +1,69 @@
+#!/bin/bash
+#Obj: convert the temperature from celsius to fahrenheit and vice versa
+#Author: Anup Painuly
+#Dependencies: None
+
+function fahrenheit_to_celsius(){
+
+    fahrenheit=$1
+    #avoiding the use of bc since sometimes it is not shipped in default repos
+    conversion=$(awk "BEGIN {printf \"%.2f\", ($fahrenheit-32) * 5/9}")
+    echo $conversion
+}
+#end of fahrenheit_to_celsius func
+
+function celsius_to_fahrenheit(){
+
+    celsius=$1
+    conversion=$(awk "BEGIN {printf \"%.2f\", ($celsius*1.8)+32}")
+    echo $conversion
+}
+#end of celsius_to_fahrenheit func
+
+function helper(){
+    echo "Usage: temp_converter [OPTIONS] [TEMPERATURE]
+    -c convert the temperature from celsius to fahrenheit 
+    -f convert the temperature from fahrenheit to celsius"
+
+}
+#end of helper function
+
+if [[ -z "$1" ]] #check if arg are missing
+then
+    echo arguments missing
+    helper
+fi
+
+# ':' means argument is needed after the options, which mean no arg need after h
+while getopts "c:f:h" opt; do
+    case $opt in
+        h)#display hepler function
+            helper
+            exit
+            ;;
+        c)#celsius to fahrenheit
+            #by default getopts matches the option partially hence the below if condition
+            if [[ $1 == "-c" ]];then
+                celsius_to_fahrenheit $2
+            else
+                echo "Unknown argument $1 "
+            fi
+            exit
+            ;;
+        f)#fahrenheit to celsius
+            if [[ $1 == "-f" ]];then
+                fahrenheit_to_celsius $2
+            else
+                echo "Unknow argument $1"
+            fi
+            exit
+            ;;
+        *)
+            if [[ $1 != "-f" && $1 != "-c" ]];
+            then
+                helper
+            fi
+            exit
+                ;;
+    esac
+done
