@@ -1,0 +1,10 @@
+create table wh_visits_orc (
+        lname string,
+        fname string,
+        time_of_arrival string,
+        appt_scheduled_time string,
+        meeting_location string,
+        info_comment string) STORED AS ORC;
+
+
+INSERT INTO wh_visits_orc select * from wh_visits;
